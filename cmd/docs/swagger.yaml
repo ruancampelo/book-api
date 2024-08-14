@@ -1,0 +1,319 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample API for managing books.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Book API
+  version: "1.0"
+paths:
+  /authors:
+    get:
+      description: Retrieve a list of all authors
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of authors
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "404":
+          description: Authors not found
+          schema:
+            type: string
+      summary: Get all authors
+      tags:
+      - authors
+    post:
+      consumes:
+      - application/json
+      description: Add a new author to the system
+      parameters:
+      - description: Author input
+        in: body
+        name: author
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created author details
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+      summary: Create a new author
+      tags:
+      - authors
+  /authors/{id}:
+    delete:
+      description: Remove a specific author from the system by their ID
+      parameters:
+      - description: Author ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Invalid ID format
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Author not found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete an author by ID
+      tags:
+      - authors
+    get:
+      description: Retrieve details of a specific author by their ID
+      parameters:
+      - description: Author ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Author details
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid ID format
+          schema:
+            type: string
+        "404":
+          description: Author not found
+          schema:
+            type: string
+      summary: Get an author by ID
+      tags:
+      - authors
+    put:
+      consumes:
+      - application/json
+      description: Update the details of an existing author by their ID
+      parameters:
+      - description: Author ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Author input
+        in: body
+        name: author
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated author details
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            type: string
+        "404":
+          description: Author not found
+          schema:
+            type: string
+      summary: Update an existing author
+      tags:
+      - authors
+  /books:
+    get:
+      description: Retrieve a list of all books
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of books
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "404":
+          description: Books not found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all books
+      tags:
+      - books
+    post:
+      consumes:
+      - application/json
+      description: Add a new book to the system
+      parameters:
+      - description: Book input
+        in: body
+        name: book
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created book details
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "422":
+          description: Unprocessable Entity
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a new book
+      tags:
+      - books
+  /books/{id}:
+    delete:
+      description: Remove a specific book from the system by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Invalid ID format
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Book not found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a book by ID
+      tags:
+      - books
+    get:
+      description: Retrieve details of a specific book by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Book details
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid ID format
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Book not found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get a book by ID
+      tags:
+      - books
+    put:
+      consumes:
+      - application/json
+      description: Update the details of an existing book by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Book input
+        in: body
+        name: book
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated book details
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Book not found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update an existing book
+      tags:
+      - books
+swagger: "2.0"
